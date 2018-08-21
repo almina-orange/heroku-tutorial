@@ -1,8 +1,8 @@
 # heroku-tutorial
 
 ## Note
-- Heroku Tutorial (description how to use Heroku)
-- Heroku の使い方・始め方
+* Heroku Tutorial (description how to use Heroku)
+* Heroku の使い方・始め方
 
 ## How to startup?
 単純なイメージとしては「作成した Heroku 上のアプリケーションが持ってる git リポジトリにプログラムを push する」だけ．
@@ -34,7 +34,7 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
     ```
 
 4. 作成した heroku app に紐付けされているリモートリポジトリへ push する
-    - heroku app に push するブランチは必ず `master` にすること（それ以外のブランチでは反映されない）
+    * heroku app に push するブランチは必ず `master` にすること（それ以外のブランチでは反映されない）
 
     ```bash
     # app を作成すると remote リポジトリに `heroku` が追加される
@@ -44,15 +44,18 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
     ```
 
 5. 作成した heroku app を開いて反映されているか確認
-    - 何も作成していない場合は Welcome page が表示される
-    - `heroku-tutorial/src`にサンプルコードがあるので試してみる
+    * 何も作成していない場合は Welcome page が表示される
+    * `sample-apps`にサンプルコードがあるので試してみる
 
 Note
-- heroku app と連携する GitHub リポジトリを変更する場合は以下の操作を行う
+* heroku app と連携する GitHub リポジトリを変更する場合は以下の操作を行う（非推奨）
 
     ```bash
     # 強制的に heroku app のリモートリポジトリを上書きする
     $ git push -f heroku master
+
+    # Buildpacks が異なる場合は heroku app を一度消してから再作成
+    $ heroku apps:destroy [$APP_NAME] && heroku apps:create [$APP_NAME]
     ```
 
 ## How to add database?
@@ -76,19 +79,23 @@ Note
     $ heroku config
     ```
 
+### MySQL (MariaDB)
+
+
 ## How to use database? (tutorial)
 ここでは，データベースに以下のようなテーブルを作成する．
 また，ここでの説明は PostgreSQL のコンソール上での扱い方に留まる．
-プログラム（php）による扱い方は[こちら](https://github.com/almina-orange/simple-SQL-injection.git)を参照すること．
+プログラムによる扱い方は[こちら](https://github.com/almina-orange/simple-SQL-injection.git)を参照すること．
+なお，他のデータベースでも基本的な操作は同じである．
 
 | id | name | age | password |
-| :-: | --- | :-: | --- |
+| :-: | --* | :-: | --* |
 | 1 | 山田太郎 | 28 | yamada |
 | 2 | 佐藤隆 | 36 | sato |
 | 3 | 斎藤達弘 | 46 | saito |
 | 4 | 桜井さつき | 22 | sakurai |
 
-なお，以下で説明する一連の手順をまとめたSQLスクリプト（`db_init.sql`）で確認することもできる．
+以下で説明する一連の手順は`db_init.sql`で確認することも可能．
 
 ```bash
 # PostgreSQL のコンソール上でSQLスクリプトを実行する
@@ -106,7 +113,7 @@ $ \i db_init.sql
 2. テーブルの作成
 
     ```sql
-    -- 上記の表を作成する
+    -* 上記の表を作成する
     $ create table sample(
     $ id integer not null,
     $ name varchar(100) not null,
@@ -119,7 +126,7 @@ $ \i db_init.sql
 3. データの挿入
 
     ```sql
-    -- 挿入の一例
+    -* 挿入の一例
     $ insert into sample (id,name,age,password) values (1,'山田太郎',26,'yamada');
     $ insert into sample (id,name,age,password) values (2,'佐藤隆',34,'sato');
     $ insert into sample (id,name,age,password) values (3,'斎藤達弘',45,'saito');
@@ -130,13 +137,13 @@ $ \i db_init.sql
 
     ```sql
     $ select * from sample;
-    $ select name from sample;  -- name だけを出力
+    $ select name from sample;  -* name だけを出力
     ```
 
 5. データの更新
 
     ```sql
-    -- '渡辺さつき' --> '桜井さつき' に変更
+    -* '渡辺さつき' --> '桜井さつき' に変更
     $ update sample set name='桜井さつき' where id=4;
     $ update sample set password='sakurai' where id=4;
     ```
@@ -148,7 +155,7 @@ $ \i db_init.sql
     ```
 
 ### Snippets
-- PostgreSQL
+* PostgreSQL
 
     ```bash
     # データベースの一覧表示
@@ -159,7 +166,7 @@ $ \i db_init.sql
     ```
     
     ```sql
-    --- テーブルの内容を全表示
+    --* テーブルの内容を全表示
     $ select * from [$TABLE];
     ```
 
@@ -200,4 +207,4 @@ $ \i db_init.sql
 - PostgresSQL のerror　Postgres PG__ConnectionBad_ could not connect to server_ No such file or directory Is the server running locally and accepting connections on Unix domain socket "/tmp/.s.PGSQL.5432" - Qiita, [https://qiita.com/yoshixj/items/3d742eb08343ea93dcd4](https://qiita.com/yoshixj/items/3d742eb08343ea93dcd4)
 
 ## ToDo
-- [ ] `heroku-tutorial/src`にサンプルコードを置いておく（各種言語）
+* [ ] `heroku-tutorial/src`にサンプルコードを置いておく（各種言語）

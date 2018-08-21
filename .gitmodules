@@ -1,0 +1,6 @@
+[submodule "sample-apps/hello-php-app"]
+	path = sample-apps/hello-php-app
+	url = https://github.com/almina-orange/hello-php-app.git
+[submodule "sample-apps/hello-ruby-app"]
+	path = sample-apps/hello-ruby-app
+	url = https://github.com/almina-orange/hello-ruby-app.git
