@@ -1,8 +1,8 @@
 # heroku-tutorial
 
 ## Note
-- Heroku Tutorial (description how to use Heroku)
-- Heroku の使い方・始め方
+* Heroku Tutorial (description how to use Heroku)
+* Heroku の使い方・始め方
 
 ## How to startup?
 単純なイメージとしては「作成した Heroku 上のアプリケーションが持ってる git リポジトリにプログラムを push する」だけ．
@@ -34,7 +34,7 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
     ```
 
 4. 作成した heroku app に紐付けされているリモートリポジトリへ push する
-    - heroku app に push するブランチは必ず `master` にすること（それ以外のブランチでは反映されない）
+    * heroku app に push するブランチは必ず `master` にすること（それ以外のブランチでは反映されない）
 
     ```bash
     # app を作成すると remote リポジトリに `heroku` が追加される
@@ -44,11 +44,11 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
     ```
 
 5. 作成した heroku app を開いて反映されているか確認
-    - 何も作成していない場合は Welcome page が表示される
-    - `sample-apps`にサンプルコードがあるので試してみる
+    * 何も作成していない場合は Welcome page が表示される
+    * `sample-apps`にサンプルコードがあるので試してみる
 
 Note
-- heroku app と連携する GitHub リポジトリを変更する場合は以下の操作を行う（非推奨）
+* heroku app と連携する GitHub リポジトリを変更する場合は以下の操作を行う（非推奨）
 
     ```bash
     # 強制的に heroku app のリモートリポジトリを上書きする
@@ -90,7 +90,7 @@ Note
 なお，他のデータベースでも基本的な操作は同じである．
 
 | id | name | age | password |
-| :-: | --- | :-: | --- |
+| :-: | --* | :-: | --* |
 | 1 | 山田太郎 | 28 | yamada |
 | 2 | 佐藤隆 | 36 | sato |
 | 3 | 斎藤達弘 | 46 | saito |
@@ -114,7 +114,7 @@ $ \i db_init.sql
 2. テーブルの作成
 
     ```sql
-    -- 上記の表を作成する
+    -* 上記の表を作成する
     $ create table sample(
     $ id integer not null,
     $ name varchar(100) not null,
@@ -127,7 +127,7 @@ $ \i db_init.sql
 3. データの挿入
 
     ```sql
-    -- 挿入の一例
+    -* 挿入の一例
     $ insert into sample (id,name,age,password) values (1,'山田太郎',26,'yamada');
     $ insert into sample (id,name,age,password) values (2,'佐藤隆',34,'sato');
     $ insert into sample (id,name,age,password) values (3,'斎藤達弘',45,'saito');
@@ -138,13 +138,13 @@ $ \i db_init.sql
 
     ```sql
     $ select * from sample;
-    $ select name from sample;  -- name だけを出力
+    $ select name from sample;  -* name だけを出力
     ```
 
 5. データの更新
 
     ```sql
-    -- '渡辺さつき' --> '桜井さつき' に変更
+    -* '渡辺さつき' --> '桜井さつき' に変更
     $ update sample set name='桜井さつき' where id=4;
     $ update sample set password='sakurai' where id=4;
     ```
@@ -156,7 +156,7 @@ $ \i db_init.sql
     ```
 
 ### Snippets
-- PostgreSQL
+* PostgreSQL
 
     ```bash
     # データベースの一覧表示
@@ -167,17 +167,17 @@ $ \i db_init.sql
     ```
     
     ```sql
-    --- テーブルの内容を全表示
+    --* テーブルの内容を全表示
     $ select * from [$TABLE];
     ```
 
 ------
 ## Reference
-- Heroku初心者がHello, Herokuをしてみる - Qiita, [https://qiita.com/Arashi/items/b2f2e01259238235e187](https://qiita.com/Arashi/items/b2f2e01259238235e187)
-- 無料でHerokuで簡単にDB[PostgreSQL]を作成する - ゼロからはじめるWEBプログラミング入門, [http://blog.w-hippo.com/entry/2017/03/01/Heroku%E3%81%A7%E7%84%A1%E6%96%99%E3%81%AEDB%28PostgreSQL%29%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B](http://blog.w-hippo.com/entry/2017/03/01/Heroku%E3%81%A7%E7%84%A1%E6%96%99%E3%81%AEDB%28PostgreSQL%29%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B)
-- Homebrewを使ったPostgreSQLのインストール(Mac OS Lion) - Qiita, [https://qiita.com/tstomoki/items/0f1a930bd42a8e1fdaac](https://qiita.com/tstomoki/items/0f1a930bd42a8e1fdaac)
-- コマンド1つでDBをアプリに追加できるのもPaaSの魅力！ Heroku Postgresの使い方 - CodeZine（コードジン）, [https://codezine.jp/article/detail/8279?p=1](https://codezine.jp/article/detail/8279?p=1)
-- SQL入門 - PostgreSQLではじめるDB入門, [http://db-study.com/archives/category/sql%E5%85%A5%E9%96%80](http://db-study.com/archives/category/sql%E5%85%A5%E9%96%80)
+* Heroku初心者がHello, Herokuをしてみる * Qiita, [https://qiita.com/Arashi/items/b2f2e01259238235e187](https://qiita.com/Arashi/items/b2f2e01259238235e187)
+* 無料でHerokuで簡単にDB[PostgreSQL]を作成する * ゼロからはじめるWEBプログラミング入門, [http://blog.w-hippo.com/entry/2017/03/01/Heroku%E3%81%A7%E7%84%A1%E6%96%99%E3%81%AEDB%28PostgreSQL%29%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B](http://blog.w-hippo.com/entry/2017/03/01/Heroku%E3%81%A7%E7%84%A1%E6%96%99%E3%81%AEDB%28PostgreSQL%29%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B)
+* Homebrewを使ったPostgreSQLのインストール(Mac OS Lion) * Qiita, [https://qiita.com/tstomoki/items/0f1a930bd42a8e1fdaac](https://qiita.com/tstomoki/items/0f1a930bd42a8e1fdaac)
+* コマンド1つでDBをアプリに追加できるのもPaaSの魅力！ Heroku Postgresの使い方 * CodeZine（コードジン）, [https://codezine.jp/article/detail/8279?p=1](https://codezine.jp/article/detail/8279?p=1)
+* SQL入門 * PostgreSQLではじめるDB入門, [http://db-study.com/archives/category/sql%E5%85%A5%E9%96%80](http://db-study.com/archives/category/sql%E5%85%A5%E9%96%80)
 
 ## ToDo
-- [ ] `heroku-tutorial/src`にサンプルコードを置いておく（各種言語）
+* [ ] `heroku-tutorial/src`にサンプルコードを置いておく（各種言語）
