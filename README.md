@@ -45,14 +45,17 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
 
 5. 作成した heroku app を開いて反映されているか確認
     - 何も作成していない場合は Welcome page が表示される
-    - `heroku-tutorial/src`にサンプルコードがあるので試してみる
+    - `sample-apps`にサンプルコードがあるので試してみる
 
 Note
-- heroku app と連携する GitHub リポジトリを変更する場合は以下の操作を行う
+- heroku app と連携する GitHub リポジトリを変更する場合は以下の操作を行う（非推奨）
 
     ```bash
     # 強制的に heroku app のリモートリポジトリを上書きする
     $ git push -f heroku master
+
+    # Buildpacks が異なる場合は heroku app を一度消してから再作成
+    $ heroku apps:destroy [$APP_NAME] && heroku apps:create [$APP_NAME]
     ```
 
 
@@ -77,10 +80,14 @@ Note
     $ heroku config
     ```
 
+### MySQL (MariaDB)
+
+
 ## How to use database? (tutorial)
 ここでは，データベースに以下のようなテーブルを作成する．
 また，ここでの説明は PostgreSQL のコンソール上での扱い方に留まる．
-プログラム（php）による扱い方は[こちら](https://github.com/almina-orange/simple-SQL-injection.git)を参照すること．
+プログラムによる扱い方は[こちら](https://github.com/almina-orange/simple-SQL-injection.git)を参照すること．
+なお，他のデータベースでも基本的な操作は同じである．
 
 | id | name | age | password |
 | :-: | --- | :-: | --- |
@@ -89,7 +96,7 @@ Note
 | 3 | 斎藤達弘 | 46 | saito |
 | 4 | 桜井さつき | 22 | sakurai |
 
-なお，以下で説明する一連の手順をまとめたSQLスクリプト（`db_init.sql`）で確認することもできる．
+以下で説明する一連の手順は`db_init.sql`で確認することも可能．
 
 ```bash
 # PostgreSQL のコンソール上でSQLスクリプトを実行する
