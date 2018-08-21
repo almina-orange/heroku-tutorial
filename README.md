@@ -55,7 +55,6 @@ Note
     $ git push -f heroku master
     ```
 
-
 ## How to add database?
 ### PostgressSQL
 #### GUI
@@ -164,6 +163,32 @@ $ \i db_init.sql
     $ select * from [$TABLE];
     ```
 
+- ローカル環境での PostgreSQL の動かし方
+    - Mac 及び Homebrew での構築した環境を想定する
+    - PostgreSQL のバージョンは`10.5`
+
+        ```bash
+        # Homebrew でサービスの起動ができる
+        $ brew services start postgresql
+        $ brew services stop postgresql
+        $ brew services restart postgresql
+
+        # データベースの一覧表示
+        $ psql -l
+
+        # データベースへの接続
+        $ psql postgress
+        ```
+
+    - `postgresql`を起動しないと以下のようなエラーが表示されるので注意
+
+        ```bash
+        > psql: could not connect to server: No such file or directory
+        >       Is the server running locally and accepting
+        >       connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
+        ```
+
+
 ------
 ## Reference
 - Heroku初心者がHello, Herokuをしてみる - Qiita, [https://qiita.com/Arashi/items/b2f2e01259238235e187](https://qiita.com/Arashi/items/b2f2e01259238235e187)
@@ -171,6 +196,8 @@ $ \i db_init.sql
 - Homebrewを使ったPostgreSQLのインストール(Mac OS Lion) - Qiita, [https://qiita.com/tstomoki/items/0f1a930bd42a8e1fdaac](https://qiita.com/tstomoki/items/0f1a930bd42a8e1fdaac)
 - コマンド1つでDBをアプリに追加できるのもPaaSの魅力！ Heroku Postgresの使い方 - CodeZine（コードジン）, [https://codezine.jp/article/detail/8279?p=1](https://codezine.jp/article/detail/8279?p=1)
 - SQL入門 - PostgreSQLではじめるDB入門, [http://db-study.com/archives/category/sql%E5%85%A5%E9%96%80](http://db-study.com/archives/category/sql%E5%85%A5%E9%96%80)
+- postgreSQLにコマンドラインからSQLファイルを実行 - Qiita, [https://qiita.com/Takashi_Nishimura/items/da5551e6a4cb4b64f055](https://qiita.com/Takashi_Nishimura/items/da5551e6a4cb4b64f055)
+- PostgresSQL のerror　Postgres PG__ConnectionBad_ could not connect to server_ No such file or directory Is the server running locally and accepting connections on Unix domain socket "/tmp/.s.PGSQL.5432" - Qiita, [https://qiita.com/yoshixj/items/3d742eb08343ea93dcd4](https://qiita.com/yoshixj/items/3d742eb08343ea93dcd4)
 
 ## ToDo
 - [ ] `heroku-tutorial/src`にサンプルコードを置いておく（各種言語）
