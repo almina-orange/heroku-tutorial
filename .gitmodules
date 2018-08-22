@@ -7,3 +7,6 @@
 [submodule "sample-apps/hello-nodejs-app"]
 	path = sample-apps/hello-nodejs-app
 	url = https://github.com/almina-orange/hello-nodejs-app.git
+[submodule "sample-apps/hello-python-app"]
+	path = sample-apps/hello-python-app
+	url = https://github.com/almina-orange/hello-python-app.git
