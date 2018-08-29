@@ -13,7 +13,7 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
 
 1. heroku CLI をインストールする
 
-    ```bash
+    ```sh
     $ brew heroku install
     $ heroku --version  # heroku がインストールされたことを確認
     $ heroku login  # heroku にログイン
@@ -21,14 +21,14 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
 
 2. 自分の GitHub 上にリポジトリを用意する
 
-    ```bash
+    ```sh
     # webブラウザ経由でリポジトリを作成
     $ git clone [$URL]
     ```
 
 3. heroku app を作成
 
-    ```bash
+    ```sh
     # webブラウザで作成しても良い
     $ heroku create [$APP_NAME]
     ```
@@ -36,7 +36,7 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
 4. 作成した heroku app に紐付けされているリモートリポジトリへ push する
     - heroku app に push するブランチは必ず `master` にすること（それ以外のブランチでは反映されない）
 
-    ```bash
+    ```sh
     # app を作成すると remote リポジトリに `heroku` が追加される
     # `heroku` が見つからない場合は `remote add` で追加する
     # このリポジトリに push することで反映される
@@ -50,12 +50,28 @@ heroku app は仮想環境で，その上にプログラムを置くイメージ
 Note
 * heroku app と連携する GitHub リポジトリを変更する場合は以下の操作を行う（非推奨）
 
-    ```bash
+    ```sh
     # 強制的に heroku app のリモートリポジトリを上書きする
     $ git push -f heroku master
 
     # Buildpacks が異なる場合は heroku app を一度消してから再作成
     $ heroku apps:destroy [$APP_NAME] && heroku apps:create [$APP_NAME]
+    ```
+
+## How to run Heroku App?
+作成した heroku app はローカルサーバでも起動できる．
+
+1. On remote server
+
+    ```sh
+    $ heroku open
+    ```
+
+2. On local server
+
+    ```sh
+    # access to `http://0.0.0.0:5000`
+    $ heroku local
     ```
 
 ## How to add database?
@@ -67,7 +83,7 @@ Note
 #### CLI
 1. `heroku addons:add`でアドオンを追加する
 
-    ```bash
+    ```sh
     # 追加されている addon を確認
     $ heroku addons
 
@@ -80,7 +96,8 @@ Note
     ```
 
 ### MySQL (MariaDB)
-
+MySQL（MariaDB）は無料アドオンだが，クレジットカードの登録が必要．
+説明は随時更新．
 
 ## How to use database? (tutorial)
 ここでは，データベースに以下のようなテーブルを作成する．
@@ -89,7 +106,7 @@ Note
 なお，他のデータベースでも基本的な操作は同じである．
 
 | id | name | age | password |
-| :-: | --* | :-: | --* |
+| :-: | --- | :-: | --- |
 | 1 | 山田太郎 | 28 | yamada |
 | 2 | 佐藤隆 | 36 | sato |
 | 3 | 斎藤達弘 | 46 | saito |
@@ -97,14 +114,14 @@ Note
 
 以下で説明する一連の手順は`db_init.sql`で確認することも可能．
 
-```bash
+```sh
 # PostgreSQL のコンソール上でSQLスクリプトを実行する
 $ \i db_init.sql
 ```
 
 1. データベースへの接続
 
-    ```bash
+    ```sh
     # `psql` がローカル環境にインストールされている必要あり
     # [$APP_NAME] に追加されたDBにログイン
     $ heroku pg:psql --app [$APP_NAME]
@@ -113,7 +130,7 @@ $ \i db_init.sql
 2. テーブルの作成
 
     ```sql
-    -* 上記の表を作成する
+    -- 上記の表を作成する
     $ create table sample(
     $ id integer not null,
     $ name varchar(100) not null,
@@ -126,7 +143,7 @@ $ \i db_init.sql
 3. データの挿入
 
     ```sql
-    -* 挿入の一例
+    -- 挿入の一例
     $ insert into sample (id,name,age,password) values (1,'山田太郎',26,'yamada');
     $ insert into sample (id,name,age,password) values (2,'佐藤隆',34,'sato');
     $ insert into sample (id,name,age,password) values (3,'斎藤達弘',45,'saito');
@@ -143,7 +160,7 @@ $ \i db_init.sql
 5. データの更新
 
     ```sql
-    -* '渡辺さつき' --> '桜井さつき' に変更
+    -- '渡辺さつき' --> '桜井さつき' に変更
     $ update sample set name='桜井さつき' where id=4;
     $ update sample set password='sakurai' where id=4;
     ```
@@ -157,7 +174,7 @@ $ \i db_init.sql
 ### Snippets
 * PostgreSQL
 
-    ```bash
+    ```sh
     # データベースの一覧表示
     $ \c
 
@@ -174,7 +191,7 @@ $ \i db_init.sql
     - Mac 及び Homebrew での構築した環境を想定する
     - PostgreSQL のバージョンは`10.5`
 
-        ```bash
+        ```sh
         # Homebrew でサービスの起動ができる
         $ brew services start postgresql
         $ brew services stop postgresql
@@ -189,7 +206,7 @@ $ \i db_init.sql
 
     - `postgresql`を起動しないと以下のようなエラーが表示されるので注意
 
-        ```bash
+        ```sh
         > psql: could not connect to server: No such file or directory
         >       Is the server running locally and accepting
         >       connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
